@@ -1,0 +1,173 @@
+- id: neuws
+  title: "NeuWS: Neural Wavefront Shaping for Guidestar-Free Imaging Through Static and Dynamic Scattering Media"
+  venue: Science Advances 2023
+  venue_url: https://www.science.org/journal/sciadv
+  description: "Neural signal representations enable breakthroughs in correcting for severe time-varying wavefront aberrations caused by scattering media."
+  image: neuws1.png
+  image_mouseover: neuws2.mp4
+  authors:
+    - brandonyfeng*
+    - haiyunguo*
+    - mingyang
+    - vivekb
+    - manojs
+    - ashokv
+    - metzler
+  pdf: https://www.science.org/doi/10.1126/sciadv.adg4671
+  award: "Science.org Headline"
+  award_url: https://web.archive.org/web/20230628185405/https://www.science.org/
+
+- id: viinter
+  title: "VIINTER: View Interpolation With Implicit Neural Representations of Images"
+  venue: SIGGRAPH Asia 2022
+  venue_url: https://sa2022.siggraph.org/en/
+  description: "View interpolation without 3D reconstruction or correspondence."
+  image: viinter.png
+  image_mouseover: viinter.mp4
+  authors:
+    - brandonyfeng
+    - susmija
+    - varshney
+  #pdf: https://arxiv.org/abs/2211.00722
+  github: AugmentariumLab/VIINTER
+  pdf: https://dl.acm.org/doi/abs/10.1145/3550469.3555417
+
+- id: prif
+  title: "PRIF: Primary Ray-based Implicit Function"
+  venue: European Conference on Computer Vision (ECCV) 2022
+  venue_url: https://eccv2022.ecva.net/
+  description: "Efficient implicit 3D shape representation."
+  project_page: "https://augmentariumlab.github.io/PRIF"
+  image: prif.png
+  image_mouseover: prif.mp4
+  authors:
+    - brandonyfeng
+    - yinda
+    - danhang
+    - ruofei
+    - varshney
+  pdf: http://arxiv.org/abs/2208.06143
+
+- id: turbugan
+  title: "TurbuGAN: An Adversarial Learning Approach to Spatially-Varying Multiframe Blind Deconvolution with Applications to Imaging Through Turbulence"
+  venue: IEEE Journal on Selected Areas in Information Theory, 2022
+  venue_url: https://www.itsoc.org/jsait
+  description: "Training GAN only on blurry images from a single scene to recover a sharp image without estimating the blur kernels or acquiring a large labelled dataset."
+  image: turbugan.jpg
+  image_mouseover: turbugan.mp4
+  authors:
+    - brandonyfeng*
+    - mingyang*
+    - metzler
+  #pdf: https://arxiv.org/abs/2203.06764
+  pdf: https://ieeexplore.ieee.org/abstract/document/10012058
+
+- id: nsub
+  title: "Neural Subspaces for Light Fields"
+  venue: IEEE Transactions on Visualization and Computer Graphics, 2022
+  venue_url: https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=2945
+  description: "Further improved compression ability on light fields with implicit neural representations."
+  image: nsub.jpg
+  image_mouseover: nsub.mp4
+  authors:
+    - brandonyfeng
+    - varshney
+  pdf: https://ieeexplore.ieee.org/abstract/document/9968104
+  #pdf: ./papers/tvcg-neuralsubspace.pdf
+
+- id: steganerf
+  title: "StegaNeRF: Embedding Invisible Information within Neural Radiance Fields"
+  venue: Preprint
+  venue_url: 
+  description: "Embedding hidden signals in NeRF renderings from arbitrary viewpoints. Opens up possibility of NeRF model and data ownership identification and protection as more and more NeRF models are exchanged and distributed online."
+  image: horns_ren.gif
+  image_mouseover: horns_res.mp4
+  authors:
+    - brandonyfeng*
+    - chenxinli*
+    - zhiwenfan*
+    - panwangpan
+    - zhangyangwang
+  pdf: https://arxiv.org/abs/2212.01602
+  project_page: https://xggnet.github.io/StegaNeRF/
+
+- id: afbench
+  title: "Benchmarking AlphaFold for Protein Complex Modeling Reveals Accuracy Determinants"
+  venue: Protein Science 2022
+  venue_url: https://onlinelibrary.wiley.com/journal/1469896x
+  description: "Interesting findings from evaluating AlphaFold2 on protein-protein docking, highlighting areas for future development using deep learning methods."
+  image: protein.jpg
+  image_mouseover: protein.mp4
+  authors:
+    - ruiyin
+    - brandonyfeng
+    - varshney
+    - brianpierce
+  pdf: https://onlinelibrary.wiley.com/doi/full/10.1002/pro.4379
+  #pdf: https://www.biorxiv.org/content/10.1101/2021.10.23.465575v1
+
+- id: signet
+  title: "SIGNET: Efficient Neural Representations For Light Fields"
+  venue: International Conference on Computer Vision (ICCV) 2021
+  venue_url: https://iccv2021.thecvf.com/home
+  description: "Remarkable compression rates by representing light fields as neural network weights. Simple and compact formulation also supports angular interpolation to generate novel viewpoints."
+  project_page: "https://augmentariumlab.github.io/SIGNET"
+  github: AugmentariumLab/SIGNET
+  image: signet.png
+  image_mouseover: signet.mp4
+  authors:
+    - brandonyfeng
+    - varshney
+  award: "Oral Presentation (Top 3%)"
+  #pdf: ./papers/SIGNET.pdf
+  pdf: https://openaccess.thecvf.com/content/ICCV2021/html/Feng_SIGNET_Efficient_Neural_Representation_for_Light_Fields_ICCV_2021_paper.html
+
+
+- id: gazechat
+  title: "GazeChat: Enhancing Virtual Conferences with Gaze-aware 3D Photos"
+  venue:  ACM Symposium on User Interface Software and Technology (UIST) 2021
+  venue_url: https://uist.acm.org/uist2021
+  description: "Visualizing \"who's looking at who\" from static profile images as people always turn off their videos. Synthesized eye gazes are obtained by leveraging a general-purpose neural network."
+  image: GazeChat.jpg
+  image_mouseover: GazeChat.mp4
+  authors:
+    - zhenyi
+    - keru
+    - brandonyfeng
+    - ruofei
+    - kenperlin
+  project_page: https://ruofeidu.com/projects/gazechat/
+  #pdf: https://ruofeidu.com/papers/He_GazeChat-EnhancingVirtualConferencesWithGaze-Aware3DPhotos_UIST2021.pdf
+  pdf: https://dl.acm.org/doi/10.1145/3472749.3474785
+
+
+- id: depth360
+  title: "Deep Depth Estimation on 360-Degree Images With a Double Quaternion Loss"
+  venue: International Conference on 3D Vision (3DV) 2020
+  venue_url: http://3dv2020.dgcv.nii.ac.jp/
+  description: "Training neural networks for 360&deg monocular depth and normal estimation. Proposed a novel approach of combining depth and normal as a double quaternion during loss computation."
+  image: 2020Deep.png
+  image_mouseover: 2020Deep2.mp4
+  authors:
+    - brandonyfeng
+    - wyao
+    - zliu
+    - varshney
+  #pdf: papers/Feng_DeepDepthEstimationOn360-DegreeImagesWithADoubleQuaternionLoss_2020.pdf
+  pdf: https://ieeexplore.ieee.org/document/9320332
+
+
+- id: mriseg
+  title: "A Self-Adaptive Network for Multiple Sclerosis Lesion Segmentation From Multi-Contrast MRI With Various Imaging Sequences"
+  venue: IEEE International Symposium on Biomedical Imaging (ISBI) 2019
+  venue_url: https://biomedicalimaging.org/2019/
+  description: "Neural networks with multimodal input disproportionately rely on certain modality while ignoring the rest. Developed a new strategy to overcome such bias and adapt to missing modalities."
+  image: MRI1.png
+  image_mouseover: MRI2.mp4
+  authors:
+    - brandonyfeng
+    - hpan
+    - cmeyer
+    - xfeng
+  #pdf: https://arxiv.org/abs/1811.07491
+  pdf: https://ieeexplore.ieee.org/document/8759522
