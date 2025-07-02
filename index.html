@@ -1,29 +1,29 @@
 <!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+  
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1362G5R74P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-1362G5R74P');
+  </script>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Panwang Pan</title>
   <meta name="author" content="Panwang Pan">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="./images/avatar.png"/>
+  <link rel="icon" href="./images/me.jpg"/>
   <link rel="stylesheet" type="text/css" href="./css/jemdoc.css"/>
   <link rel="stylesheet" type="text/css" href="./css/academicons.min.css">
+
   
 </head>
 
-<style>
-  .morphing-text {
-      background-image: linear-gradient(to right, 
-       #1246f3 0%, #3503fc 25%, #db03fc 75%, #a200ff 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-  }
-  .center-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-</style>
+
 
 <body>
   <a id="home" class="anchor"></a>
@@ -51,6 +51,7 @@
               </p>
 
 <!-- 	      <p>  <strong> <font color="#FF0000"> Looking for self-motivated research interns for publishing top-tier papers. Feel free to drop me an email if you are interested in the topics above. </font> </strong>   </p> -->
+        	      <p>   <font color="blue"> I welcome opportunities for coffee chats and collaborations. Please feel free to reach out if you're interested in my projects. </font>   </p>
 		    
               <p style="text-align:center">
        
@@ -121,15 +122,23 @@
               </a>) <hr>
               * Equal contribution, † Project leader, ‡ Corresponding author
               <!-- * Equal contribution -->
+              <div style="margin: 20px 0;">
+                <div class="publication-tabs">
+                  <button class="tab-button active" data-category="all" onmouseover="showCategory('all')" onclick="showCategory('all')">All Projects</button>
+                  <button class="tab-button" data-category="generation" onmouseover="showCategory('generation')" onclick="showCategory('generation')">Generative AI</button>
+                  <button class="tab-button" data-category="perception" onmouseover="showCategory('perception')" onclick="showCategory('perception')">Multi-modal Learning</button>
+                </div>
+              </div>
+
             </td>
           </tr>
         </tbody></table>
 
 
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <table data-category="generation" class="publication-item" style="background-color: var(--high-light); width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <td style="padding:20px;width:25%;vertical-align:middle">
             <div class="one" align="center">
-              <font color="#af0034"> <strong> Preprint 2025  </strong> </font> <p></p>
+              <p class="pub_conf">Preprint 2025</p>
               <img src="images/partcrafter/partcrafter.png"  alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;">
             </div>
           </td>
@@ -152,39 +161,19 @@
            [<a href="https://www.arxiv.org/abs/2506.05573">Paper</a>]
            [<a href="https://wgsxm.github.io/projects/partcrafter/">Project</a>]
            [<a href="https://github.com/wgsxm/PartCrafter">Code</a>]
+           <img src="https://img.shields.io/github/stars/wgsxm/PartCrafter?style=social"
+												alt="PartCrafter GitHub stars" style="vertical-align: text-bottom;"/>
+
             <p>PartCrafter is a structured 3D generative model that jointly generates multiple parts and objects from a single RGB image in one shot.</p>
           </td>
       </tbody></table> 
 
 
-
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+              <table class="publication-item" data-category="perception" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <td style="padding:20px;width:25%;vertical-align:middle">
             <div class="one" align="center">
-              <font color="#af0034"> <strong> Preprint 2025  </strong> </font> <p></p>
-              <img src="images/jarvisArt.png"  alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;">
-            </div>
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <a href="https://wgsxm.github.io/projects/partcrafter/">
-              <span class="morphing-text">JarvisArt:</span> Liberating Human Artistic Creativity via an Intelligent Photo Retouching Agent
-            </a>
-            <p></p>
-            Yunlong Lin, Zixu Lin, Kunjie Lin, Jinbin Bai, <strong><u>Panwang Pan</u></strong>, Chenxin Li, Haoyu Chen, Zhongdao Wang, Xinghao Ding†, Wenbo Li, <strong><a href="https://yanshuicheng.info/">Shuicheng Yan</a></strong><sup>†</sup>
-           <p></p>
-      
-           [<a href="https://arxiv.org/pdf/2506.17612">Paper</a>]
-           [<a href="https://jarvisart.vercel.app/">Project</a>]
-           [<a href="https://github.com/LYL1015/JarvisArt">Code</a>]
-            <p>JarvisArt outperforms GPT-4o with a 60% improvement in average pixel-level metrics on MMArt-Bench for content fidelity, while maintaining comparable instruction-following capabilities.</p>
-          </td>
-      </tbody></table> 
-
-
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one" align="center">
-              <font color="#af0034"> <strong> CVPR 2025  </strong> </font> <p></p>
+              <p class="pub_conf">CVPR 2025</p>
+              <!-- <font color="#af0034"> <strong> CVPR 2025  </strong> </font> <p></p> -->
 
               <video playsinline autoplay loop muted src="images/jarvisir/jarvisIR-preview.mp4"  alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;"></video>
               
@@ -212,46 +201,47 @@
            [<a href="https://arxiv.org/abs/2504.04158">Paper</a>]
            [<a href="https://cvpr2025-jarvisir.github.io/">Project</a>]
            [<a href="https://github.com/LYL1015/JarvisIR">Code</a>]
+           <img src="https://img.shields.io/github/stars/LYL1015/JarvisIR?style=social"
+												alt="PartCrafter GitHub stars" style="vertical-align: text-bottom;"/>
             <p>JarvisIR is a VLM-powered intelligent system that dynamically schedules expert models for restoration.</p>
           </td>
       </tbody></table> 
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <div class="one" align="center">
-                <font color="#af0034"> <strong> ICLR 2025  </strong> </font> <p></p>
-                <div class="two" id="DiffGS"><img src="./images/diffgs.gif" width="200",height="400"></div>
-                
-              </div>
-            </td>
-            <td style="padding:10px;width:75%;vertical-align:middle">
-							<a href="https://chenguolin.github.io/projects/DiffSplat/">
-                <papertitle>Diff<span style="color: #036bfc;">S</span><span style="color: #3503fc;">p</span><span style="color: #a200ff;">la</span><span style="color: #e250ff;">t</span>: Repurposing Image Diffusion Models for Scalable Gaussian Splatting Generation</papertitle>
-              </a>
-              <p></p>
-              <div class="is-size-6 publication-authors">
-                <a href="https://chenguolin.github.io">Chenguo Lin</a><sup>*</sup>,  
-	              <strong>Panwang Pan</strong><sup>*</sup><sup>†</sup>,
-                  <a href="https://ybbbbt.com/">Bangbang Yang</a>,
-                  <a href="https://www.zemingli.com/">Zeming Li</a>,
-		            <a href="http://www.muyadong.com/">Yadong Mu</a><sup>‡</sup>,
-             </div>
-             <p></p>
-        
-             [<a href="https://openreview.net/forum?id=eajZpoQkGK">Openreview</a>]
-             [<a href="https://arxiv.org/abs/2501.16764">Paper</a>]
-             [<a href="https://chenguolin.github.io/projects/DiffSplat/">Project</a>]
-             [<a href="https://github.com/chenguolin/DiffSplat">Code</a>]
-              <p></p>
-              <p> DiffSplat is a novel 3D generative framework that natively generates 3D Gaussians by taming large-scale text-to-image diffusion models. DiffSplat directly generates 3D Gaussians from text prompts or single-view images in 1~2 seconds and achieves SOTA 3D Reconstruction results. </p>
-            </td>
-        </tbody></table> 
-
-
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <table  class="publication-item" data-category="perception"  style="background-color: var(--high-light); width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <td style="padding:20px;width:25%;vertical-align:middle">
             <div class="one" align="center">
-              <font color="#af0034"> <strong> ICLR 2025 🌟 spotlight 🌟 </strong> </font>  <p></p>
+              <p class="pub_conf">Preprint 2025</p>
+              <img src="images/jarvisArt.png"  alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;">
+            </div>
+          </td>
+          <td style="padding:10px;width:75%;vertical-align:middle">
+            <a href="https://wgsxm.github.io/projects/partcrafter/">
+              <span class="morphing-text">JarvisArt:</span> Liberating Human Artistic Creativity via an Intelligent Photo Retouching Agent
+            </a>
+            <p></p>
+            Yunlong Lin, Zixu Lin, Kunjie Lin, Jinbin Bai, <strong><u>Panwang Pan</u></strong>, Chenxin Li, Haoyu Chen, Zhongdao Wang, Xinghao Ding†, Wenbo Li, <strong><a href="https://yanshuicheng.info/">Shuicheng Yan</a></strong><sup>†</sup>
+           <p></p>
+      
+           [<a href="https://arxiv.org/pdf/2506.17612">Paper</a>]
+           [<a href="https://jarvisart.vercel.app/">Project</a>]
+           [<a href="https://github.com/LYL1015/JarvisArt">Code</a>]
+           <img src="https://img.shields.io/github/stars/LYL1015/JarvisArt?style=social"
+												alt="PartCrafter GitHub stars" style="vertical-align: text-bottom;"/>
+            <p>JarvisArt outperforms GPT-4o with a 60% improvement in average pixel-level metrics on MMArt-Bench for content fidelity, while maintaining comparable instruction-following capabilities.</p>
+          </td>
+      </tbody></table> 
+
+
+
+
+     
+
+
+        <table class="publication-item" data-category="generation" style="background-color: var(--high-light); width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <td style="padding:20px;width:25%;vertical-align:middle">
+            <div class="one" align="center">
+              <p class="pub_conf">ICLR 2025 🌟 spotlight 🌟</p>
+              <!-- <font color="#af0034"> <strong> ICLR 2025 🌟 spotlight 🌟 </strong> </font>  <p></p> -->
               <div class="two" id="4k4dgen"><img src="./images/4k4dgen.png" width="200",height="200"></div>
             </div>
           </td>
@@ -269,16 +259,16 @@
             [<a href="https://openreview.net/forum?id=qxRoo7ULCo">Openreview</a>]
             [<a href="https://arxiv.org/abs/2406.13527">Paper</a>]
             [<a href="https://4k4dgen.github.io/">Project</a>]
-            [<a href="https://4k4dgen.github.io/">Code</a>]
+            [<a href="https://github.com/ShadowIterator/4K4DGen">Code</a>]
             <p></p>
             <p>4K4DGEN achieves high-quality Panorama-to-4D generation at a resolution of 4K for the first time using efficient splatting techniques for real-time exploration. </p>
           </td>
       </tbody></table>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <td style="padding:20px;width:25%;vertical-align:middle">
             <div class="one" align="center">
-              <font color="#af0034"> <strong> NeurIPS 2024 </strong> </font>  <p></p>
+              <p class="pub_conf">NeurIPS 2024 </p>
               <div class="two" id="huamansplat"><img src="./images/humansplat.gif" width="200",height="400"></div>
             </div>
           </td>
@@ -303,16 +293,52 @@
             [<a href="https://arxiv.org/abs/2406.12459">Paper</a>]
             [<a href="https://humansplat.github.io/">Project</a>]
             [<a href="https://github.com/humansplat/humansplat">Code</a>]
+            <img src="https://img.shields.io/github/stars/humansplat/humansplat?style=social"
+												alt="PartCrafter GitHub stars" style="vertical-align: text-bottom;"/>
             <p></p>
             <p>HumanSplat predicts the 3D Gaussian Splatting properties of any human from a single input image in a generalizable manner.</p>
           </td>
       </tbody></table>
 
+      <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one" align="center">
 
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+                <p class="pub_conf">ICLR 2025 </p>
+                <div class="two" id="DiffGS"><img src="./images/diffgs.gif" width="200",height="400"></div>
+                
+              </div>
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+							<a href="https://chenguolin.github.io/projects/DiffSplat/">
+                <papertitle>Diff<span style="color: #036bfc;">S</span><span style="color: #3503fc;">p</span><span style="color: #a200ff;">la</span><span style="color: #e250ff;">t</span>: Repurposing Image Diffusion Models for Scalable Gaussian Splatting Generation</papertitle>
+              </a>
+              <p></p>
+              <div class="is-size-6 publication-authors">
+                <a href="https://chenguolin.github.io">Chenguo Lin</a><sup>*</sup>,  
+	              <strong>Panwang Pan</strong><sup>*</sup><sup>†</sup>,
+                  <a href="https://ybbbbt.com/">Bangbang Yang</a>,
+                  <a href="https://www.zemingli.com/">Zeming Li</a>,
+		            <a href="http://www.muyadong.com/">Yadong Mu</a><sup>‡</sup>,
+             </div>
+             <p></p>
+        
+             [<a href="https://openreview.net/forum?id=eajZpoQkGK">Openreview</a>]
+             [<a href="https://arxiv.org/abs/2501.16764">Paper</a>]
+             [<a href="https://chenguolin.github.io/projects/DiffSplat/">Project</a>]
+             [<a href="https://github.com/chenguolin/DiffSplat">Code</a>]
+             <img src="https://img.shields.io/github/stars/chenguolin/DiffSplat?style=social"
+												alt="PartCrafter GitHub stars" style="vertical-align: text-bottom;"/>
+              <p></p>
+              <p> DiffSplat is a novel 3D generative framework that natively generates 3D Gaussians by taming large-scale text-to-image diffusion models. DiffSplat directly generates 3D Gaussians from text prompts or single-view images in 1~2 seconds and achieves SOTA 3D Reconstruction results. </p>
+            </td>
+        </tbody></table> 
+
+
+      <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
         <td style="padding:20px;width:25%;vertical-align:middle">
           <div class="one">
-            <div class="two" id="huamansplat"><img src="./images/instructlayout.png" width="200",height="400"></div>
+            <div class="two" id="instructlayout"><img src="./images/instructlayout.png" width="200",height="400"></div>
           </div>
         </td>
         <td style="padding:10px;width:75%;vertical-align:middle">
@@ -329,7 +355,9 @@
           <br>
         [<a href="https://arxiv.org/abs/2407.07580">Paper</a>]
         [<a href="https://chenguolin.github.io/projects/InstructScene/">Project</a>]
-        [<a href="https://github.com/chenguolin/InstructScene"> Code</a>]
+        [<a href="https://github.com/chenguolin/InstructScene">Code</a>]
+        <img src="https://img.shields.io/github/stars/chenguolin/InstructScene  ?style=social"
+												alt="PartCrafter GitHub stars" style="vertical-align: text-bottom;"/>
 
           <p></p>
           <p><strong>Under review by Transactions on Pattern Analysis and Machine Intelligence (T-PAMI)</strong></p>  
@@ -338,13 +366,11 @@
     </tbody></table>
 
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <td style="padding:20px;width:25%;vertical-align:middle">
             <div class="one" align="center">
-              <font color="#af0034"> <strong> Preprint 2025  </strong> </font> <p></p>
+              <p class="pub_conf">Preprint 2025 </p>
               <video playsinline autoplay loop muted src="images/dynamicverse.mp4"  alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;"></video>
-              <!-- <video src="images/dynamicverse.mp4"  alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;"> -->
-            </div>
           </td>
           <td style="padding:10px;width:75%;vertical-align:middle">
             <a href="https://dynamic-verse.github.io/">
@@ -363,7 +389,7 @@
           </td>
       </tbody></table> 
 
-    <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <td style="padding:20px;width:25%;vertical-align:middle">
         <div class="one" align="center">
           <font color="#af0034"> <strong> ICCV23 & ICLR25  </strong> </font> <p></p>
@@ -422,8 +448,6 @@
             <td width="25%">07/2018 - 10/2018</td>
           </tr>
         </tbody></table>
-
-        
             <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
               <tr>
               <td style="padding:5px;width:100%;vertical-align:middle">
@@ -450,8 +474,20 @@
             </tr>
           </tbody></table>
 
-
-          
+        <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
+            <tbody>
+            <tr>
+                <td style="padding:0px;width:23%;vertical-align:left">
+                   <br>
+                    <div style="width: 50%; text-align: center; margin: 0 auto;">
+                      <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=o3et5BMrY2H5BRK-Gn5JAdbsHMnI5WAGFmeS2t9sicM&cl=ffffff&w=a"></script>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+                
+   
     
       </td>
     </tr>
@@ -460,7 +496,9 @@
 
   </div>
 
-  
+<script src="js/effect.js"></script>
+
+
 </body>
 
 </html>
