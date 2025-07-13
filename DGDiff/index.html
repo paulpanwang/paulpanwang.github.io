@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deformable Gaussian Diffusion</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <link rel="icon" href="./static/images/logo.png">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+
+<style>
+  .morphing-text {
+      background-image: linear-gradient(to right, 
+       #3b12f3 0%, #21acb1 25%, #2848a0 75%, #5086e9 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+  }
+  .center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<body>
+
+  <!-- Section 1: Banner -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <!-- Title -->
+            <h1 class="title is-2 publication-title">
+              <span class="morphing-text model-name">Deformable Gaussian Diffusion</span>:
+              <span>Controllable 4D Scene Generation from a Single Image</span>
+            </h1>
+
+            <div class="is-size-5 publication-info">
+              <b>NeurIPS Submission #2917</b>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Teaser -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div style="text-align: center;">
+          <img src="./static/images/teaser.png" width="100%" class="center-img"/>
+       
+      </div>
+        <h2 class="subtitle has-text-centered">
+          <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion</b></span> <b>is a a unified framework
+         directly predicts dynamic 4D scene content without test-time optimization.</b>
+        </h2>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Abstract -->
+  <section style="margin-top: -5pt;" class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Abstract -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">🧩&nbsp;&nbsp; Abstract &nbsp;&nbsp;🧩</h2>
+          <div class="content has-text-justified">
+            <p>
+              We introduce <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion</b></span>, a feed-forward framework for controllable 4D scene generation from a single image utilizing a video diffusion model. By synergizing generative priors with structural constraints derived from synthetic and real-world 4D video data, our approach directly predicts complete 4D representations without requiring test-time optimization or post-processing steps. 
+              Specifically, we generate the 4D world conditioned on camera poses, language prompts, and a single image. This generated world captures appearance, geometry, and motion, all encapsulated within predicted deformable 3D Gaussians in a generalizable manner. 
+              To achieve this, we first present a scalable data collection and processing pipeline for metric-scale 4D reconstruction, encompassing both geometry and motion. Subsequently, we enhance video diffusion models with a video latent transformer that jointly models spatio-temporal dependencies and incorporates the prediction of 3D Gaussian parameters and their deformations over time. 
+              Supervised by objectives targeting appearance fidelity, geometric accuracy, and motion consistency, our method ensures the generation of comprehensive 4D scene attributes. The method is validated on downstream tasks including video generation, novel view synthesis, and geometry exportation. Our method generates controllable 4D scenes within 30 seconds and demonstrates performance surpassing optimization-based approaches in dynamic scene understanding and synthesis.
+             
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3: Method -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Method &nbsp;&nbsp;🧩</h2>
+          <div class="content has-text-justified">
+            <img src="./static/images/network.png" width="100%" class="center-img"/>
+            <p>
+              The network architecture of <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion.</b></span> We present a high-fidelity 4D scene generation method from single images through four key innovations: video diffusion latents processed by our novel Transformer enabling dynamic 3DGS deformation, unified supervision with photometric, geometric, and motion losses, and progressive training for robust geometry and texture.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+
+          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Results of <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion</b></span> &nbsp;&nbsp;🧩</h2>
+          <div style="text-align:center">
+            <table style="width: 100%">
+              <tbody>
+
+                <tr class="prompt-row">
+                  <td>Input Image</td>
+                  <td><span class="morphing-text model-name">Ours (feed-forward)</span></td>
+                  <td>MoSca (test-time optimization)</td>
+               </tr>
+
+
+                <tr class="result-row">
+                  <td><img src="./static/images/nvs/imgs/1.png"  style="width: 90%; height: auto;"></img></td>
+                  <td><video src="./static/images/nvs/imgs/1_ours.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                  <td><video src="./static/images/nvs/imgs/01_mosca.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                </tr>
+
+                <tr class="result-row">
+                  <td><img src="./static/images/nvs/imgs/3.png"  style="width: 90%; height: auto;"></img></td>
+                  <td><video src="./static/images/nvs/imgs/3_ours.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                  <td><video src="./static/images/nvs/imgs/03_mosca.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                </tr>
+
+                <tr class="result-row">
+                  <td><img src="./static/images/nvs/imgs/4.png"  style="width: 90%; height: auto;"></img></td>
+                  <td><video src="./static/images/nvs/imgs/4_ours.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                  <td><video src="./static/images/nvs/imgs/04_mosca.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                </tr>
+
+                <tr class="result-row">
+                  <td><img src="./static/images/nvs/imgs/6.png"  style="width: 90%; height: auto;"></img></td>
+                  <td><video src="./static/images/nvs/imgs/6_ours.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                  <td><video src="./static/images/nvs/imgs/06_mosca.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                </tr>
+                <tr class="result-row">
+                  <td><img src="./static/images/nvs/imgs/8.png"  style="width: 90%; height: auto;"></img></td>
+                  <td><video src="./static/images/nvs/imgs/8_ours.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                  <td><video src="./static/images/nvs/imgs/08_mosca.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                </tr>
+
+                <tr class="result-row">
+                  <td><img src="./static/images/nvs/imgs/10.png"  style="width: 90%; height: auto;"></img></td>
+                  <td><video src="./static/images/nvs/imgs/10_ours.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                  <td><video src="./static/images/nvs/imgs/10_mosca.mp4" autoplay loop muted style="width: 90%; height: auto;"></video></td>
+                </tr>
+
+ 
+
+
+              </tbody>
+            </table>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+
+          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Ablation study of <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion</b></span> &nbsp;&nbsp;🧩</h2>
+          <div style="text-align:center">
+            <table style="width: 100%">
+              <tbody>
+
+                <img src="static/images/ablation.png"  style="width: 90%; height: auto;"></img>
+
+              </tbody>
+            </table>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+</body>
+
+</html>
