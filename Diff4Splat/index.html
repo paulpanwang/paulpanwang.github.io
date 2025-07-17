@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>🌀 Deformable Gaussian Diffusion</title>
-  <meta name="keywords" content="Deformable Gaussian Diffusion, 4D Generation, 4D Scene Generation, Generative Models">
+  <title>🌀 Diff4Splat</title>
+  <meta name="keywords" content="Diff4Splat, Diff4Splat, 4D Generation, 4D Scene Generation, Generative Models">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
@@ -49,7 +49,7 @@
 
             <!-- Title -->
             <h1 class="title is-2 publication-title">
-              <span class="morphing-text model-name">🌀 Deformable Gaussian Diffusion</span>:
+              <span class="morphing-text model-name">🌀 Diff4Splat</span>:
               <span>Controllable 4D Scene Generation from a Single Image</span>
             </h1>
 
@@ -135,7 +135,7 @@
        
       </div>
         <h2 class="subtitle has-text-centered">
-          <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion</b></span> <b>is a a unified framework
+          <span class="morphing-text model-name"><b>Diff4Splat</b></span> <b>is a a unified framework
          directly predicts dynamic 4D scene content without test-time optimization.</b>
         </h2>
 
@@ -153,7 +153,7 @@
           <h2 class="title is-3">🧩&nbsp;&nbsp; Abstract &nbsp;&nbsp;🧩</h2>
           <div class="content has-text-justified">
             <p>
-              We introduce <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion</b></span>, a feed-forward framework for controllable 4D scene generation from a single image utilizing a video diffusion model. By synergizing generative priors with structural constraints derived from synthetic and real-world 4D video data, our approach directly predicts complete 4D representations without requiring test-time optimization or post-processing steps. 
+              We introduce <span class="morphing-text model-name"><b>Diff4Splat</b></span>, a feed-forward framework for controllable 4D scene generation from a single image utilizing a video diffusion model. By synergizing generative priors with structural constraints derived from synthetic and real-world 4D video data, our approach directly predicts complete 4D representations without requiring test-time optimization or post-processing steps. 
               Specifically, we generate the 4D world conditioned on camera poses, language prompts, and a single image. This generated world captures appearance, geometry, and motion, all encapsulated within predicted deformable 3D Gaussians in a generalizable manner. 
               To achieve this, we first present a scalable data collection and processing pipeline for metric-scale 4D reconstruction, encompassing both geometry and motion. Subsequently, we enhance video diffusion models with a video latent transformer that jointly models spatio-temporal dependencies and incorporates the prediction of 3D Gaussian parameters and their deformations over time. 
               Supervised by objectives targeting appearance fidelity, geometric accuracy, and motion consistency, our method ensures the generation of comprehensive 4D scene attributes. The method is validated on downstream tasks including video generation, novel view synthesis, and geometry exportation. Our method generates controllable 4D scenes within 30 seconds and demonstrates performance surpassing optimization-based approaches in dynamic scene understanding and synthesis.
@@ -175,7 +175,7 @@
           <div class="content has-text-justified">
             <img src="./static/images/network.png" width="100%" class="center-img"/>
             <p>
-              The network architecture of <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion.</b></span> We present a high-fidelity 4D scene generation method from single images through four key innovations: video diffusion latents processed by our novel Transformer enabling dynamic 3DGS deformation, unified supervision with photometric, geometric, and motion losses, and progressive training for robust geometry and texture.
+              The network architecture of <span class="morphing-text model-name"><b>Diff4Splat.</b></span> We present a high-fidelity 4D scene generation method from single images through four key innovations: video diffusion latents processed by our novel Transformer enabling dynamic 3DGS deformation, unified supervision with photometric, geometric, and motion losses, and progressive training for robust geometry and texture.
             </p>
           </div>
         </div>
@@ -188,7 +188,7 @@
       <div class="columns is-centered">
         <div class="column is-full-width">
 
-          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Results of <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion</b></span> &nbsp;&nbsp;🧩</h2>
+          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Results of <span class="morphing-text model-name"><b>Diff4Splat</b></span> &nbsp;&nbsp;🧩</h2>
           <div style="text-align:center">
             <table style="width: 100%">
               <tbody>
@@ -253,7 +253,7 @@
       <div class="columns is-centered">
         <div class="column is-full-width">
 
-          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Ablation study of <span class="morphing-text model-name"><b>Deformable Gaussian Diffusion</b></span> &nbsp;&nbsp;🧩</h2>
+          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Ablation study of <span class="morphing-text model-name"><b>Diff4Splat</b></span> &nbsp;&nbsp;🧩</h2>
           <div style="text-align:center">
             <table style="width: 100%">
               <tbody>
