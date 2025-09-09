@@ -49,8 +49,8 @@
 
             <!-- Title -->
             <h1 class="title is-2 publication-title">
-              <span class="morphing-text model-name">🌀 Deformable Gaussian Diffusion</span>:
-              <span>Controllable 4D Scene Generation from a Single Image</span>
+              <span class="morphing-text model-name">🌀 Diff4Splat</span>:
+              <span>Controllable 4D Scene Generation with Latent Dynamic Reconstruction Models</span>
             </h1>
 
         <div class="is-size-5 publication-authors">
@@ -111,7 +111,7 @@
 
           <!-- Code Link -->
           <span class="link-block">
-            <a href="https://paulpanwang.github.io/DGDiff/"
+            <a href="https://github.com/paulpanwang/Diff4Splat"
               class="external-link button is-normal is-rounded is-dark">
               <span class="icon"><i class="fab fa-github"></i></span>
               <span>Code</span>
@@ -152,13 +152,9 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">🧩&nbsp;&nbsp; Abstract &nbsp;&nbsp;🧩</h2>
           <div class="content has-text-justified">
-            <p>
-              We introduce <span class="morphing-text model-name"><b>Diff4Splat</b></span>, a feed-forward framework for controllable 4D scene generation from a single image utilizing a video diffusion model. By synergizing generative priors with structural constraints derived from synthetic and real-world 4D video data, our approach directly predicts complete 4D representations without requiring test-time optimization or post-processing steps. 
-              Specifically, we generate the 4D world conditioned on camera poses, language prompts, and a single image. This generated world captures appearance, geometry, and motion, all encapsulated within predicted deformable 3D Gaussians in a generalizable manner. 
-              To achieve this, we first present a scalable data collection and processing pipeline for metric-scale 4D reconstruction, encompassing both geometry and motion. Subsequently, we enhance video diffusion models with a video latent transformer that jointly models spatio-temporal dependencies and incorporates the prediction of 3D Gaussian parameters and their deformations over time. 
-              Supervised by objectives targeting appearance fidelity, geometric accuracy, and motion consistency, our method ensures the generation of comprehensive 4D scene attributes. The method is validated on downstream tasks including video generation, novel view synthesis, and geometry exportation. Our method generates controllable 4D scenes within 30 seconds and demonstrates performance surpassing optimization-based approaches in dynamic scene understanding and synthesis.
-             
-            </p>
+          <p>
+          We introduce <span class="morphing-text model-name"><b>Diff4Splat</b></span>, a feed-forward framework for controllable 4D scene generation <b>from a single image</b>. Our method synergizes the powerful generative priors of video diffusion models with geometric and motion constraints learned from a large-scale 4D dataset. Given a single image, camera trajectory, and optional text prompt, our model directly predicts a complete, dynamic 4D scene represented by deformable 3D Gaussian Splats. This approach captures appearance, geometry, and motion in a single pass, eliminating the need for test-time optimization or post-hoc processing. At the core of our framework is a video latent transformer that enhances existing video diffusion models, enabling them to jointly model spatio-temporal dependencies and predict 3D Gaussian Splats over time. Supervised by objectives targeting appearance fidelity, geometric accuracy, and motion consistency, <span class="morphing-text model-name"><b>Diff4Splat</b></span>  achieves performance comparable to state-of-the-art optimization-based methods for dynamic scene synthesis while being significantly more efficient.
+          </p>
           </div>
         </div>
       </div>
@@ -192,6 +188,9 @@
           <div style="text-align:center">
             <table style="width: 100%">
               <tbody>
+
+                <img src="static/images/diff4splat_quant1.png"  style="width: 100%; height: auto;" class="inserted-image"></img>
+                <img src="static/images/diff4splat_quant2.png"  style="width: 100%; height: auto;" class="inserted-image"></img>
 
                 <tr class="prompt-row">
                   <td>Input Image</td>
@@ -253,12 +252,15 @@
       <div class="columns is-centered">
         <div class="column is-full-width">
 
-          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Ablation study of <span class="morphing-text model-name"><b>Diff4Splat</b></span> &nbsp;&nbsp;🧩</h2>
+          <h2 class="title is-3 has-text-centered">🧩&nbsp;&nbsp; Ablation Studies of <span class="morphing-text model-name"><b>Diff4Splat</b></span> &nbsp;&nbsp;🧩</h2>
           <div style="text-align:center">
             <table style="width: 100%">
               <tbody>
-
-                <img src="static/images/ablation.png"  style="width: 90%; height: auto;"></img>
+                <img src="static/images/ablation_loss.png"  style="width: 100%; height: auto;" class="inserted-image"></img>
+                <img src="static/images/ablation.png"  style="width: 100%; height: auto;" class="inserted-image"></img>
+                <p> 
+                    Ablation of Deformation Gaussian Field shows that removing this module results in ghosting artifacts <span style="color: red; font-weight: bold;">the red bounding boxes</span>. 
+                </p>
 
               </tbody>
             </table>
@@ -281,16 +283,35 @@
 
           <div class="content has-text-justified">
             <ul>
-          
+    
+              <li>
+                <a href="https://chenguolin.github.io/projects/MoVieS/">
+                  [Arxiv'25] MoVieS: Motion-Aware 4D Dynamic View Synthesis in One Second
+                </a>
+              </li>
+
+              <li>
+                <a href="https://snap-research.github.io/wonderland/">
+                  [CVPR'25] Wonderland: Navigating 3D Scenes from a Single Image
+                </a>
+              </li>
+
+
               <li>
                 <a href="https://4dgt.github.io">
                   [CVPR'25] MoSca: Dynamic Gaussian Fusion from Casual Videos via 4D Motion Scaffolds
                 </a>
               </li>
 
-                <li>
+              <li>
                 <a href="https://aether-world.github.io/">
                   [ICCV'25] Aether: Geometric-Aware Unified World Modeling
+                </a>
+              </li>
+
+              <li>
+                <a href="https://arxiv.org/abs/2411.18673">
+                  [CVPR'25] AC3D: Analyzing and Improving 3D Camera Control in Video Diffusion Transformers
                 </a>
               </li>
 
@@ -315,9 +336,14 @@
           If you find our work helpful, please consider citing:
         </p>
         <pre>
-      <code>@misc{ 
-        
-     }</code></pre>
+      <code>@article{xxx,
+        title={},
+        author={},
+        journal={arXiv preprint arXiv:},
+        year={2025}
+      }
+
+</code></pre>
       </div>
     </div>
   </section>
