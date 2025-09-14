@@ -552,3 +552,16 @@ margin-right: auto;
 }
 
 
+
+
+.inserted-image {
+  max-width: 80%;     /* Set the maximum width for the image */
+  height: auto;       /* Ensure the height adjusts automatically to maintain aspect ratio */
+  margin: 30px;       /* Add space above and below the image */
+  margin-top: 10px;
+  display: block;     /* Make sure the image is treated as a block-level element */
+  margin-left: auto;  /* Center the image horizontally */
+  margin-right: auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px 3px #00000030;
+}
