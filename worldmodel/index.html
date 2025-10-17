@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <title> Panwang Pan</title>
+  <meta name="keywords" content="Deformable Gaussian Diffusion, Diff4Splat, Diff4Splat, 4D Generation, 4D Scene Generation, Generative Models">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/logo.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+
+<style>
+  .morphing-text {
+      background-image: linear-gradient(to right, 
+       #ec12f3 0%, #5f0d80 25%, #2892a0 75%, #50d5e9 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+  }
+
+  .morphing-panwang {
+      background-image: linear-gradient(to right, 
+        #50d5e9 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+  }
+
+  .center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .video-decoration {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .audio-control .audio-button,
+  .audio-control .play-pause-button {
+    position: absolute;
+    bottom: 16px;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .audio-control:hover .audio-button,
+  .audio-control:hover .play-pause-button {
+    opacity: 1;
+  }
+
+  .audio-control .audio-button:hover,
+  .audio-control .play-pause-button:hover {
+    background-color: #fff;
+  }
+
+  .audio-button {
+    right: 16px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>');
+  }
+
+  .audio-control.muted .audio-button {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 = 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>');
+  }
+
+  .play-pause-button {
+    right: 72px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/></svg>');
+  }
+
+  .play-pause-button.paused {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M8 5v14l11-7z"/></svg>');
+  }
+
+  .video-grid-container {
+    margin-top: 2rem;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 1024px) {
+    .video-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<body>
+
+  <!-- Section 1: Banner -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <!-- Title -->
+            <h1 class="title is-2 publication-title">
+             🎬  <span class="morphing-text model-name"> Towards Immersive World Models</span>
+            </h1>
+
+          <span class="link-block">
+            <a href="https://paulpanwang.github.io/" 
+              class="external-link button is-normal is-rounded is-dark">
+              <span> ✉️ <span class="morphing-panwang model-name">Panwang Pan</span></span>
+            </a>
+          </span> &nbsp;
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- Section 3: Abstract -->
+  <section style="margin-top: -5pt;" class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Abstract -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+
+          <div class="video-decoration audio-control">
+            <video width="100%" autoplay loop playsinline>
+              <source src="static/assets/teaser.mp4" type="video/mp4">
+            </video>
+            <div class="audio-button"></div>
+            <div class="play-pause-button"></div>
+          </div>
+  
+           <b><span class="morphing-text model-name">Immersive World Models: </span> Generating Dynamic, Immersive, Explorable, and Interactive Worlds from text prompt or single image </b>
+          </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section -3: Related Links -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+
+          <h2 class="title is-3 has-text-centered">🌐&nbsp;&nbsp; Research Projects &nbsp;&nbsp;🌐</h2>
+
+          <div class="content has-text-justified">
+            <p><strong>
+              Approximately 18 papers have been accepted by top-tier conferences, with 11 of them being as project lead or first author.
+            </strong></p>
+            <ul>
+    
+              <li>
+                <a href="https://chenguolin.github.io/projects/MoVieS/">
+                  [Arxiv'25] MoVieS: Motion-Aware 4D Dynamic View Synthesis in One Second (Project Lead)
+                </a>
+              </li>
+
+              <li>
+                <a href="https://chenguolin.github.io/projects/MoVieS/">
+                  [Arxiv'25] Diff4Splat: Controllable 4D Scene Generation with Latent Dynamic Reconstruction Models (Corresponding Author)
+                </a>
+              </li>
+
+              <li>
+                <a href="https://immersegen.github.io/">
+                  [Arxiv'25] ImmerseGen: Agent-Guided Immersive World Generation with Alpha-Textured Proxies 
+                </a>
+              </li>
+
+              <li>
+                <a href="https://wgsxm.github.io/projects/partcrafter/">
+                  [NeurIPS'25] PartCrafter: Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers (Project Lead)
+                </a>
+              </li>
+
+              <li>
+                <a href="https://neurips.cc/virtual/2025/poster/119122">
+                  [NeurIPS'25] Human3R: Synergizing Generalizable Human Reconstruction and Semantic 3D Segmentation (Corresponding Author)
+                </a>
+              </li>
+
+              <li>
+                <a href="https://dynamic-verse.github.io/">
+                  [NeurIPS'25 ] DynamicVerse: Physically-Aware Multimodal Modeling for Dynamic 4D Worlds
+                </a>
+              </li>
+
+
+              <li>
+                <a href="https://4k4dgen.github.io/">
+                  [ICLR'25 Spotlight] 4K4DGen: Panoramic 4D Generation at 4K Resolution (Corresponding Author)
+                </a>
+              </li>
+
+
+              <li>
+                <a href="https://chenguolin.github.io/projects/DiffSplat">
+                  [ICLR'25] DiffSplat: Repurposing Image Diffusion Models for Scalable 3D Gaussian Splat Generation  (Project Lead)
+                </a>
+              </li>
+
+
+              <li>
+                <a href="https://humansplat.github.io/">
+                  [ICLR'24] HumanSplat: Generalizable Single-Image Human Gaussian Splatting with Structure Priors (Corresponding Author)
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+
+  <!-- Section -4: Video Grid -->
+  <section class="section video-grid-container">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">🎬&nbsp;&nbsp; Panoramic World Generation &nbsp;&nbsp;🎬</h2>
+
+      <h5 class="subtitle has-text-centered">
+          A framework directly 8K Panoramic World Generation (in 2 minutes) without optimization</b>
+      </h5>
+      <div class="video-decoration audio-control">
+        <video width="100%" autoplay loop playsinline>
+          <source src="static/assets/Image_to_3D.mp4" type="video/mp4">
+        </video>
+        <div class="audio-button"></div>
+        <div class="play-pause-button"></div>
+      </div>
+
+
+      <div class="video-grid">
+        <!-- Video 1 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="static/assets/anime.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="static/assets/autumn.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="static/assets/prairie.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+      </div>
+
+
+
+      <div class="video-grid">
+
+      <!-- Video 1-->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="static/assets/text_to_image_without_audio.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="static/assets/forest.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="static/assets/snow.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+  
+      </div>
+
+
+    </div>
+  </section>
+  </section>
+
+
+    <!-- Section -5: 3DGS Grid -->
+  <section class="section video-grid-container">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">🎬&nbsp;&nbsp; Explicit 3D World Generation  &nbsp;&nbsp;🎬</h2>
+
+      <h5 class="subtitle has-text-centered">
+          A unified framework directly generates Dynamic 3D scenes (in seconds) without optimization</b>
+      </h5>
+
+      <div class="hero-body">
+        <div style="text-align: center;">
+          <img src="https://paulpanwang.github.io/Diff4Splat/static/images/teaser.png" width="100%" class="center-img"/>
+       
+      </div>
+   
+
+      </div>
+
+     <div class="video-grid">
+
+      <!-- Video 1-->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://paulpanwang.github.io/Diff4Splat/static/images/nvs/imgs/3_ours.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://paulpanwang.github.io/Diff4Splat/static/images/nvs/imgs/10_ours.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://paulpanwang.github.io/Diff4Splat/static/images/nvs/imgs/6_ours.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+  
+      </div>
+
+
+
+    <div class="video-grid">
+
+      <!-- Video 1-->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/nvs/3_nvs.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/nvs/1_nvs.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/nvs/7_nvs.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+  
+      </div>
+
+
+
+      <div class="video-grid">
+        <!-- Video 1 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/flow/1_video.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/flow/1_depth.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/flow/1_motion.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+      </div>
+
+
+
+ 
+
+
+         <div class="video-grid">
+
+      <!-- Video 1-->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/seg/5_video.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/seg/5_depth.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/MoVieS/static/images/seg/5_motion.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+  
+      </div>
+
+
+    </div>
+  </section>
+  </section>
+
+
+
+      <!-- Section -5: video Grid -->
+  <section class="section video-grid-container">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">📸 &nbsp;&nbsp; Persistent and Implicit 3D World Generation &nbsp;&nbsp;📸 </h2>
+
+      <div class="video-grid">
+        <!-- Video 1 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://kunhao-liu.github.io/Rolling_Forcing_Webpage/videos/compare_videos/rolling_forcing/A%20cinematic%20film%20shot%20in%2035mm%20capturing%20a%20dynamic%20step-printing%20scene%20of%20a%20person%20running.%20The%20runne-0.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://kunhao-liu.github.io/Rolling_Forcing_Webpage/videos/compare_videos/rolling_forcing/A%20close-up%20shot%20in%20the%20style%20of%20a%20realistic%20botanical%20illustration,%20capturing%20a%20dry%20rainbow%20rose%20tha-0.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://kunhao-liu.github.io/Rolling_Forcing_Webpage/videos/compare_videos/rolling_forcing/A%20dynamic%20action%20shot%20of%20a%20turtle%20wearing%20a%20sleek%20racing%20suit,%20riding%20a%20colorful%20skateboard%20down%20a%20s-0.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+      </div>
+
+
+            <div class="video-grid">
+        <!-- Video 1 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://kunhao-liu.github.io/Rolling_Forcing_Webpage/videos/compare_videos/rolling_forcing/A%20cinematic%20film%20shot%20in%2035mm%20capturing%20a%20dynamic%20step-printing%20scene%20of%20a%20person%20running.%20The%20runne-0.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://kunhao-liu.github.io/Rolling_Forcing_Webpage/videos/compare_videos/rolling_forcing/A%20close-up%20shot%20in%20the%20style%20of%20a%20realistic%20botanical%20illustration,%20capturing%20a%20dry%20rainbow%20rose%20tha-0.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://kunhao-liu.github.io/Rolling_Forcing_Webpage/videos/compare_videos/rolling_forcing/A%20dynamic%20action%20shot%20of%20a%20turtle%20wearing%20a%20sleek%20racing%20suit,%20riding%20a%20colorful%20skateboard%20down%20a%20s-0.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  </section>
+
+
+  <!-- Section -5: video Grid -->
+  <section class="section video-grid-container">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">📸 &nbsp;&nbsp; 3D Assets &nbsp;&nbsp;📸 </h2>
+      <h5 class="subtitle has-text-centered">
+          I also work on 3D photo-realtic assets generation from a single image for immersive experience.
+      </h5>
+      <div class="video-grid">
+           <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://humansplat.github.io/static/videos/res4.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://humansplat.github.io/static/videos/res5.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://humansplat.github.io/static/videos/add6.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+      </div>
+
+
+
+      <div class="video-grid">
+        <!-- Video 1 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/DiffSplat/static/images/i23d_text/2.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/DiffSplat/static/images/results/t23d/11.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://chenguolin.github.io/projects/DiffSplat/static/images/results/t23d/2.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+      </div>
+
+
+        <div class="video-grid">
+        <!-- Video 1 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://wgsxm.github.io/projects/partcrafter/static/images/object/ours/19.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 2 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://wgsxm.github.io/projects/partcrafter/static/images/scene/ours/07.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+        <!-- Video 3 -->
+        <div class="video-decoration audio-control">
+          <video width="100%" autoplay loop playsinline>
+            <source src="https://wgsxm.github.io/projects/partcrafter/static/images/scene/ours/00.mp4" type="video/mp4">
+          </video>
+          <div class="audio-button"></div>
+          <div class="play-pause-button"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  </section>
+
+
+ 
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const videoWrappers = document.querySelectorAll('.audio-control');
+
+    videoWrappers.forEach(wrapper => {
+        const video = wrapper.querySelector('video');
+        const audioButton = wrapper.querySelector('.audio-button');
+        const playPauseButton = wrapper.querySelector('.play-pause-button');
+
+        // Start with sound
+        video.muted = false;
+        wrapper.classList.remove('muted');
+
+        if (audioButton) {
+            audioButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                video.muted = !video.muted;
+                wrapper.classList.toggle('muted');
+            });
+        }
+
+        if (playPauseButton) {
+            const updatePlayPauseButton = () => {
+                if (video.paused) {
+                    playPauseButton.classList.add('paused');
+                } else {
+                    playPauseButton.classList.remove('paused');
+                }
+            };
+
+            updatePlayPauseButton();
+
+            playPauseButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            });
+
+            video.addEventListener('play', updatePlayPauseButton);
+            video.addEventListener('pause', updatePlayPauseButton);
+        }
+    });
+});
+</script>
+</body>
+
+</html>
