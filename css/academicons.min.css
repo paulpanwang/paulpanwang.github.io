@@ -58,3 +58,23 @@
 .one:hover::before {
   left: 100%;
 }
+
+/* project-media 样式和悬停效果 */
+.project-media {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: block;
+    position: relative; /* 确保 z-index 生效 */
+    z-index: 1;
+    background-color: #fff; /* 防止透明背景图片重叠 */
+}
+
+.publication-item:hover .project-media {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
