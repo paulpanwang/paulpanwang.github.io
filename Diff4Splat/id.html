@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ID-Crafter</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <link rel="icon" href="./static/images/logo.png">
+
+  <link rel="preload" as="video" href="video/main-480p.webm" type="video/webm" crossorigin>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.getElementById('cite-btn');
+      if (!btn) return;
+      var bibtex = '@misc{pan2025idcraftervlmgroundedonlinerl,\n' +
+        '  title={ID-Crafter: VLM-Grounded Online RL for Compositional Multi-Subject Video Generation},\n' +
+        '  author={Panwang Pan and Jingjing Zhao and Yuchen Lin and Chenguo Lin and Chenxin Li and Hengyu Liu and Tingting Shen and Yadong MU},\n' +
+        '  year={2025},\n' +
+        '  eprint={2511.00511},\n' +
+        '  archivePrefix={arXiv},\n' +
+        '  primaryClass={cs.CV},\n' +
+        '  url={' + window.location.href + '}\n' +
+        '}';
+      function copyText(t) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(t).then(function () {
+            notify('Citation copied to clipboard', 'is-success');
+          }).catch(function () {
+            fallbackCopy(t);
+          });
+        } else {
+          fallbackCopy(t);
+        }
+      }
+      function fallbackCopy(t) {
+        var ta = document.createElement('textarea');
+        ta.value = t;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        notify(ok ? 'Citation copied to clipboard' : 'Copy failed, please copy manually', ok ? 'is-success' : 'is-danger');
+      }
+      function notify(msg, type) {
+        var n = document.createElement('div');
+        n.className = 'notification ' + type;
+        n.textContent = msg;
+        n.style.position = 'fixed';
+        n.style.top = '20px';
+        n.style.right = '20px';
+        n.style.zIndex = '9999';
+        document.body.appendChild(n);
+        setTimeout(function () { if (n && n.parentNode) n.parentNode.removeChild(n); }, 2500);
+      }
+      btn.addEventListener('click', function () { copyText(bibtex); });
+    });
+  </script>
+
+<link rel="preload" as="video" href="video/main-480p.webm" type="video/webm" crossorigin>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+
+<style>
+  .morphing-text {
+      background-image: linear-gradient(to right, 
+       #f39c12 0%, #e67e22 25%, #d35400 75%, #f1c40f 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+  }
+
+  .center-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section {
+    padding-bottom: 1rem;
+  }
+
+
+  .hero-body {
+    padding-bottom: 1rem;
+  }
+
+  .custom-prompt-box {
+    background-color: rgba(194, 191, 191, 0.277);
+    padding: 1.2rem;
+    /* border: 1px solid #272323; */
+    border-radius: 1rem;
+    margin-top: 1rem;
+  }
+
+  .hero-body .prompt-text {
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .prompt-text {
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+  }
+
+
+  .prompt-title {
+    font-size: 1rem;
+    font-weight: bold;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: center;
+    /* font-style: italic; */
+    text-transform: uppercase;
+  }
+
+  <style>
+    .video-wrapper {
+      position: relative;
+      /* Key: absolutely positioned children are anchored to this container */
+      display: inline-block;
+      /* Container width adapts to the video, does not occupy the full row */
+      /* Optional: limit the maximum video width as needed */
+      max-width: 600px;
+    }
+  
+    /* Keep the original video styles (extend as needed) */
+    .results-media {
+      width: 100%;
+      /* Video width adapts to the container */
+      display: block;
+      /* Remove the default bottom gap under videos */
+    }
+  </style>
+
+<body>
+
+  <!-- Section 1: Banner -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <!-- Title -->
+            <h1 class="title is-2 publication-title">
+              <span class="morphing-text model-name"><b>ID-Crafter</b></span>:
+              <span>VLM-Grounded Online RL for Compositional Multi-Subject Video Generation</span>
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://paulpanwang.github.io/">Panwang Pan</a><sup>*†</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://angericky.github.io">Jingjing Zhao</a><sup>*</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://wgsxm.github.io">Yuchen Lin</a><sup>*</sup>,
+              </span><br>
+              <span class="author-block">
+                <a href="https://chenguolin.github.io/m">Chenguo Lin</a><sup></sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Chenxin Li</a><sup></sup>,
+              </span>
+              <span class="author-block">
+                <a href="">HengYu Liu</a><sup></sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Tingting shen</a><sup></sup>,
+              </span>
+              <span class="author-block">
+                <a href="http://www.muyadong.com">Yadong Mu</a><sup></sup>,
+              </span>
+            </div>
+
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><i>* equal contribution, † project lead</i></span>
+            </div>
+            <div class="column has-text-centered">
+              <!-- Button area: add a Cite button -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2511.00511v3" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/paulpanwang/IDCrafter"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false"
+                      data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 496 512" data-fa-i2svg="">
+                      <path fill="currentColor"
+                        d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                      </path>
+                    </svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com --></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a id="cite-btn" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-quote-right"></i></span>
+                  <span>Cite</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Teaser -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <!-- Main container: centered layout with controlled max width -->
+      <div class="hero-body max-w-5xl mx-auto bg-white rounded-lg shadow-sm p-6 md:p-8 ">
+        <!-- 2. Reference image area -->
+        <div class="rounded-xl pb-2">
+
+          <video class="w-full rounded-lg" src="assets/examples/ID-Crafter_s2v_video1.mp4" loading="lazy" autoplay loop
+            muted></video>
+
+          <div class="columns is-vcentered ">
+            <div class="column is-6">
+              <div class="columns is-mobile is-variable is-2">
+                <div class="column">
+                  <img class="teaser-ref-img" loading="lazy" src="assets/examples/ID-Crafter_s2v_video1_sub1.png"
+                    alt="reference 1">
+                </div>
+                <div class="column">
+                  <img class="teaser-ref-img" loading="lazy" src="assets/examples/ID-Crafter_s2v_video1_sub2.png"
+                    alt="reference 2">
+                </div>
+                <div class="column">
+                  <img class="teaser-ref-img" style="aspect-ratio: 1 / 1;" loading="lazy"
+                    src="assets/examples/ID-Crafter_s2v_video1_sub3.png" alt="reference 3">
+                </div>
+              </div>
+            </div>
+            <div class="column is-6 is-flex  " style="height: 100%;">
+              <div class="custom-prompt-box">
+                <p class="prompt-title">Prompt</p>
+                <div class="prompt-text">
+                  In a cherry blossom forest where pink-and-white cherry blossoms fall, the boy squats down to call a
+                  white cat softly, holding out a dried fish. The cat is wary at first, then approaches slowly—after
+                  taking the fish, it gently rubs its head against the boy’s palm, with petals landing on their
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="subtitle has-text-centered ">
+            <span class="morphing-text model-name"><b>ID-Crafter</b></span> <b>is a multi-subject video synthesis model
+              that</b>
+            <br>
+            <b>generates subject-consistent videos with multiple references. </b>
+          </div>
+        </div>
+      </div>
+  </section>
+
+
+
+  <!-- Section 3: Abstract -->
+  <section style="margin-top: -5pt;" class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Abstract -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">🧩&nbsp;&nbsp; Abstract &nbsp;&nbsp;🧩</h2>
+          <div class="content has-text-justified">
+            <p>
+              Significant progress has been achieved in high-fidelity video synthesis, yet current paradigms often fall
+              short in effectively integrating identity information from multiple subjects. This leads to semantic
+              conflicts and suboptimal
+              performance in preserving identities and interactions, limiting controllability and applicability. To
+              tackle this issue, we introduce <span class="morphing-text model-name"><b>ID-Crafter</b></span>, <b>a
+                framework for multi-subject video generation</b> that achieves superior identity preservation and
+              semantic
+              coherence.
+              <!-- <span class="morphing-text model-name"><b>ID-Crafter</b></span> integrates three key components:
+            </p>
+            <p>
+              (i) <b>a hierarchical identity-preserving attention mechanism</b> that progressively aggregates features
+              at intra-subject, inter-subject, and cross-modal levels; <br>
+
+
+              (ii)
+              <b>a semantic understanding module powered by a pretrained
+                Vision-Language Model (VLM)</b> to provide fine-grained guid-
+              ance and capture complex inter-subject relationships; <br>
+
+              (iii) <b>an online reinforcement learning phase</b> to further refine
+              the model for critical concepts.
+            </p> -->
+
+              <span class="morphing-text model-name"><b>ID-Crafter</b></span> incorporates <b>a hierarchical
+                identity-preserving attention mechanism</b> and <b>a VLM that performs reasoning</b> on the multimodal
+              input into a video DiT to enable multi-subject video generation. <b>An online RL stage</b> further refines
+              the concept alignment.
+              <!-- Furthermore, we construct a new dataset to facilitate robust training and evaluation. -->
+              <!-- <br>Extensive experiments demonstrate that <span
+                class="morphing-text model-name"><b>ID-Crafter</b></span>,
+              establishes new state-of-the-art performance on multi-subject
+              video generation benchmarks, excelling in identity preservation, temporal consistency, and overall video
+              quality. -->
+
+              <!-- <span class="morphing-text model-name"><b>ID-Crafter</b></span>, <b>a novel framework that addresses this gap by tackling multi-subject video generation from a text prompt and reference images</b>. This task is challenging as it requires preserving subject identities, integrating semantics across subjects and modalities, and maintaining temporal consistency. -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 4: Method -->
+  <section style="margin-top: -5pt;" class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Abstract -->
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3 has-text-centered">🔮&nbsp;&nbsp; Method &nbsp;&nbsp;🔮</h2>
+          <h3 class="title is-4">Architecture</h3>
+          <div class="content has-text-justified">
+            <img loading="lazy" src="./assets/images/method.png" width="100%" class="center-img" />
+            <p>
+              The capability of <span class="morphing-text model-name"><b>ID-Crafter</b></span> in generating
+              multi-subject videos from a text prompt and multiple reference images is achieved by
+              <b>(1) Hierarchical Identity-Preserving Attention</b>, which aggregates features both within and across
+              subjects and modalities, ensuring identity consistency and faithful textual alignment;
+              <b>(2) Semantic Guidance via Pretrained Vision-Language Models (VLMs)</b>, leveraging VLMs' rich semantic
+              understanding to capture fine-grained interactions among multiple subjects and modalities.
+              <b>(3) An online reinforcement learning phase</b> is further employed to enhance video quality and
+              preserve subject identities across time. Extensive experiments show that <span
+                class="morphing-text model-name"><b>ID-Crafter</b></span> outperforms previous methods in identity
+              preservation, temporal consistency, and overall video quality.
+            </p>
+          </div>
+          </br>
+
+          <!-- <h3 class="title is-4">Experiment Results</h3>
+          <div class="content has-text-justified">
+            <img loading="lazy" src="./assets/images/experiment.png" width="100%" class="center-img" />
+            <p style="margin-top: 5pt;">
+              <b></b>
+            </p>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Results -->
+  <section style="margin-top: -5pt;" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+
+          <h2 class="title is-3 has-text-centered">🎬&nbsp;&nbsp; Results &nbsp;&nbsp;🎬</h2>
+          <h3 class="title is-4">Multi-Reference Subject-to-Video Generation</h3>
+          <p>ID-Crafter can generate <b>natural and dynamic details</b> across multiple subjects from given text, such as
+            <b>fabric wrinkles induced by movement, wind-swept hair, and crumbs scattered from torn bread</b>.
+          </p>
+          <div class="columns is-multiline results-grid is-centered">
+            <div class="column is-6">
+              <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video1.mp4" loading="lazy"
+                preload="metadata" autoplay loop muted playsinline></video>
+              <div class="results-ref-list">
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video1_sub1.png" alt="reference 1" />
+                </div>
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video1_sub2.png" alt="reference 2" />
+                </div>
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video1_sub3.png" alt="reference 2" />
+                </div>
+              </div>
+              <div class="custom-prompt-box">
+                <div class="prompt-text">
+                  In a cherry blossom forest where pink-and-white cherry blossoms fall, the boy squats down to call a
+                  white cat softly, holding out a dried fish. The cat is wary at first, then approaches slowly—after
+                  taking the fish, it gently rubs its head against the boy’s palm, with petals landing on their
+                  shoulders.
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-6">
+              <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video2.mp4" loading="lazy"
+                preload="metadata" autoplay loop muted playsinline></video>
+              <div class="results-ref-list">
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video2_sub1.png" alt="reference 1" />
+                </div>
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video2_sub2.png" alt="reference 2" />
+                </div>
+              </div>
+              <div class="custom-prompt-box">
+                <div class="prompt-text">
+                  In the living room, the dog jumps onto the beige sofa with the rabbit doll in its mouth, then lies
+                  down beside the sofa armrest.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="columns is-multiline results-grid">
+            <h3 class="title is-4">ID-preserving Generation</h3>
+            <p>
+              ID-Crafter faithfully preserves the identity of reference subjects (including people and items) while
+              producing vivid videos aligned with the given prompt.
+            </p>
+            <div class="column is-6">
+              <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video3.mp4" loading="lazy"
+                preload="metadata" autoplay loop muted playsinline></video>
+              <div class="results-ref-list">
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video3_sub1.png" alt="reference 1" />
+                </div>
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video3_sub2.png" alt="reference 2" />
+                </div>
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video3_sub3.png" alt="reference 3" />
+                </div>
+              </div>
+              <div class="custom-prompt-box">
+                <div class="prompt-text">
+                  On the pitch, just as the man mounts the broomstick to steady himself, the Golden Snitch suddenly
+                  zooms around his hair. The broom wobbles, he grabs the stick in a panic and leans sideways.
+                </div>
+              </div>
+            </div>
+
+            <div class="column is-6">
+              <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video4.mp4" loading="lazy"
+                preload="metadata" autoplay loop muted playsinline></video>
+              <div class="results-ref-list">
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video4_sub1.png" alt="reference 1" />
+                </div>
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video4_sub2.png" alt="reference 2" />
+                </div>
+                <div class="results-ref">
+                  <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video4_sub3.png" alt="reference 3" />
+                </div>
+              </div>
+              <div class="custom-prompt-box">
+                <div class="prompt-text">
+                  In the European-style alley, the man in a gray sweatshirt just lifts a bread slice.
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2 class="title is-3 has-text-centered">📝&nbsp;&nbsp; Comparison Results &nbsp;&nbsp;📝</h2>
+          
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <table class="table is-fullwidth">
+                <tr style="border-bottom: 30px solid transparent;">
+                  <td>Our</td>
+                  <td>Phantom</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="results-pair-wrapper">
+            <div class="columns is-multiline is-vcentered">
+              <div class="column is-6">
+                <div class="results-ref-list">
+                  <div class="results-ref">
+                    <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video5_sub1.png" alt="reference 1" />
+                  </div>
+                  <div class="results-ref">
+                    <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video5_sub2.png" alt="reference 2" />
+                  </div>
+                  <div class="results-ref">
+                    <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video5_sub3.png" alt="reference 3" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="column is-6">
+                <div class="prompt-text">
+                  Under warm orange soft light, on a park lawn covered with ginkgo leaves, sunlight filters through
+                  branches, casting light spots. A chubby light brown hedgehog tops before a fuzzy acorn, stretches
+                  pink
+                  paws to nudge it gently, and the acorn rolls slowly once on the leaves, full of cozy autumn charm.
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="results-divider" />
+
+            <!-- Example 6 -->
+            <div class="columns is-multiline results-grid mt-4">
+              <div class="column is-6">
+                <div class="video-wrapper">
+                  <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video6_id.mp4" loading="lazy"
+                    preload="metadata" autoplay loop muted playsinline></video>
+                    Our
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="video-wrapper">
+                  <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video6_ph.mp4" loading="lazy"
+                    preload="metadata" autoplay loop muted playsinline></video>
+                    Phantom
+                </div>
+              </div>
+            </div>
+            <div class="results-pair-wrapper">
+              <div class="columns is-multiline is-vcentered">
+                <div class="column is-6">
+                  <div class="results-ref-list">
+                    <div class="results-ref">
+                      <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video6_sub1.png" alt="reference 1" />
+                    </div>
+                    <div class="results-ref">
+                      <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video6_sub2.png" alt="reference 2" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column is-6">
+                  <div class="prompt-text">
+                    A sulphur-crested cockatoo swoops to grab its corner. He freezes, bread crumbs cover his sweatshirt,
+                    and the cockatoo shakes the bread while tilting its head.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="results-divider" />
+ 
+
+            <!-- Example 7 -->
+            <div class="columns is-multiline results-grid mt-4">
+              <div class="column is-6">
+                <div class="video-wrapper">
+                  <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video7_id.mp4" loading="lazy"
+                    preload="metadata" autoplay loop muted playsinline></video>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="video-wrapper">
+                  <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video7_ph.mp4" loading="lazy"
+                    preload="metadata" autoplay loop muted playsinline></video>
+                </div>
+              </div>
+            </div>
+            <div class="results-pair-wrapper">
+              <div class="columns is-multiline is-vcentered">
+                <div class="column is-6">
+                  <div class="results-ref-list">
+                    <div class="results-ref">
+                      <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video7_sub1.png" alt="reference 1" />
+                    </div>
+                    <div class="results-ref">
+                      <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video7_sub2.png" alt="reference 2" />
+                    </div>
+                    <div class="results-ref">
+                      <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video7_sub3.png" alt="reference 3" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column is-6">
+                  <div class="prompt-text">
+                    In the gravel area of the Martian desert, Trump, in a spacesuit and in boots, touches the texture of
+                    a reddish-brown Martian rock with his gloved hand. He leans over slightly, the helmet visor reflects
+                    the surrounding red sand, and several gravels of different sizes are beside him.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="results-divider" />
+
+            <!-- Example 8 -->
+            <div class="columns is-multiline results-grid mt-4">
+              <div class="column is-6">
+                <div class="video-wrapper">
+                  <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video8_id.mp4" loading="lazy"
+                    preload="metadata" autoplay loop muted playsinline></video>
+                </div>
+              </div>
+              <div class="column is-6">
+                <div class="video-wrapper">
+                  <video class="results-media" src="./assets/examples/ID-Crafter_s2v_video8_ph.mp4" loading="lazy"
+                    preload="metadata" autoplay loop muted playsinline></video>
+                </div>
+              </div>
+            </div>
+            <div class="results-pair-wrapper">
+              <div class="columns is-multiline is-vcentered">
+                <div class="column is-6">
+                  <div class="results-ref-list">
+                    <div class="results-ref">
+                      <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video8_sub1.png" alt="reference 1" />
+                    </div>
+                    <div class="results-ref">
+                      <img loading="lazy" src="./assets/examples/ID-Crafter_s2v_video8_sub2.png" alt="reference 2" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column is-6">
+                  <div class="prompt-text">
+                    In a room, a woman wearing pink headphones gently closes her eyes with a smile. Her face shows sheer
+                    enjoyment as she is lost in the music.
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+
+  <!-- Section 6: Comparison Results -->
+  <section style="margin-top: -5pt;" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+
+          <h2 class="title is-3 has-text-centered">📝&nbsp;&nbsp; Benchmark &nbsp;&nbsp;📝</h2>
+
+          <div style="text-align:center">
+            <table style="width: 100%">
+              <tbody>
+                <tr class="result-row">
+                  <td><video src="./assets/examples/comparsion_1.mp4" loading="lazy" autoplay loop muted></video></td>
+
+                  <!-- Insert a script after index.js in the head to handle copy and notifications -->
+                  <script src="./static/js/index.js"></script>
+                  <!-- <td><img loading="lazy" src="./static/images/object/gt/00.png"></td>
+                  <td><video src="./static/images/object/ours/00.mp4" width="80%" loading="lazy" autoplay loop muted></video></td>
+                  <td><video src="./static/images/object/ours/splited/00.mp4" width="80%" autoplay loop muted></video> -->
+                </tr>
+                <tr class="result-row">
+                  <td><video src="./assets/examples/comparison_2.mp4" loading="lazy" autoplay loop muted></video></td>
+                </tr>
+                <tr class="result-row">
+                  <td><video src="./assets/examples/comparison_3.mp4" loading="lazy" autoplay loop muted></video></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+
+          <h2 class="title is-3 has-text-centered">📊&nbsp;&nbsp; Data &nbsp;&nbsp;📊</h2>
+          <!-- <h3 class="title is-4">Dataset Curation</h3> -->
+          <div class="content has-text-justified">
+            <img loading="lazy" src="./assets/images/IDCrafter-SUPP1.png" width="100%" class="inserted-image" />
+            <img loading="lazy" src="./assets/images/IDCrafter-SUPP2.png" width="100%" class="inserted-image" />
+            <img loading="lazy" src="./assets/images/IDCrafter-SUPP3.png" width="100%" class="inserted-image" />
+            <p style="margin-top: 5pt;">
+              <b></b>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section -1: Footer -->
+  <footer class="footer">
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <h2 class="title is-3 has-text-centered">📄&nbsp;&nbsp; BibTeX &nbsp;&nbsp;📄</h2>
+            <pre class="bibtex-code">@misc{pan2025idcraftervlmgroundedonlinerl,
+            title={ID-Crafter: VLM-Grounded Online RL for Compositional Multi-Subject Video Generation}, 
+            author={Panwang Pan and Jingjing Zhao and Yuchen Lin and Chenguo Lin and Chenxin Li and Hengyu Liu and Tingting Shen and Yadong MU},
+            year={2025},
+            eprint={2511.00511},
+            archivePrefix={arXiv},
+            primaryClass={cs.CV},
+            url={https://arxiv.org/abs/2511.00511}, 
+          }
+          </pre>
+          </div>
+        </div>
+      </div>
+
+
+
+    </section>
+  </footer>
+
+
+</body>
+
+</html>
