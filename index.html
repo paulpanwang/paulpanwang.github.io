@@ -63,10 +63,10 @@
                   <span><strong>Github</strong></span>
                 </a> &nbsp/&nbsp
                 
-                <!-- <a href="https://x.com/paulpanwang">
+                <a href="https://x.com/paulpanwang">
                   <img src="./images/logos/twitter.png" width="15" height="13">
                   <span><strong>Twitter</strong></span> 
-                </a> -->
+                </a>
 
                 <!-- </a> &nbsp/&nbsp -->
                 <a href="wechat.html">
@@ -113,6 +113,40 @@
           </tr>
         </tbody></table>
 
+
+        <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:0px 20px 6px 20px;">
+              <p style="font-size:16px;margin-bottom:6px;"><strong>Video Generation</strong></p>
+              <p style="margin-bottom:0;">Controllable video synthesis with compositional objectives and language-grounded reward signals.</p>
+            </td>
+          </tr>
+        </tbody></table>
+  
+        <table class="publication-item" data-category="generation" style="background-color: var(--high-light); width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one" align="center">
+                <p class="pub_conf">CVPR 2026</p>
+                <video playsinline autoplay loop muted src="images/id-crafter.mp4" alt="ID-Crafter teaser" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;"></video>
+              </div>
+            </td>
+            <td style="padding:10px;width:75%;vertical-align:middle">
+              <a href="https://github.com/paulpanwang/IDCrafter">
+                <span class="morphing-text">ID-Crafter:</span> VLM-Grounded Online RL for Compositional Multi-Subject Video Generation
+              </a>
+              <p></p>
+              <div class="is-size-6 publication-authors">
+                <strong><u>Panwang Pan</u></strong>, Jingjing Zhao, Yuchen Lin, Chenguo Lin, Chenxin Li, Hengyu Liu, Tingting Shen, Yadong Mu
+              </div>
+              <p></p>
+              [<a href="https://arxiv.org/abs/2511.00511">Paper</a>]
+              [<a href="https://paulpanwang.github.io/ID-Crafter">Project</a>]
+              [<a href="https://github.com/paulpanwang/IDCrafter">Code</a>]
+              <p>ID-Crafter introduces a VLM-grounded online RL framework that uses language feedback to improve compositional multi-subject video generation.</p>
+            </td>
+          </tr>
+        </tbody></table>
 
 
 
@@ -276,151 +310,115 @@
         </tr>
       </tbody></table>
 
-      <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:0px 20px 6px 20px;">
-            <p style="font-size:16px;margin-bottom:6px;"><strong>Video Generation</strong></p>
-            <p style="margin-bottom:0;">Controllable video synthesis with compositional objectives and language-grounded reward signals.</p>
-          </td>
-        </tr>
-      </tbody></table>
+      
+      <details class="publication-item collapsible-section" data-category="generation">
+        <summary>
+          <span class="collapsible-title">3D Content Generation</span>
+          <span class="collapsible-description">Structured 3D generation spanning meshes, Gaussian splats, humans, and semantic layouts.</span>
+        </summary>
+        <div class="collapsible-body">
+          <table style="background-color: var(--high-light); width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <div class="one" align="center">
+                  <p class="pub_conf">NeurIPS 2025</p>
+                  <img src="images/partcrafter/partcrafter.png" alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;">
+                </div>
+              </td>
+              <td style="padding:10px;width:75%;vertical-align:middle">
+                <a href="https://wgsxm.github.io/projects/partcrafter/">
+                  <span class="morphing-text">PartCrafter:</span> Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers
+                </a>
+                <p></p>
+                <div class="is-size-6 publication-authors">
+                  <a href="https://wgsxm.github.io/">Yuchen Lin</a>,
+                  <a href="https://chenguolin.github.io/">Chenguo Lin</a>,
+                  <strong>Panwang Pan</strong><sup>†</sup> (Project Lead),
+                  <a href="">Honglei Yan</a>,
+                  <a href="">Yiqiang Feng</a>,
+                  <a href="http://www.muyadong.com/">Yadong Mu</a>,
+                  <a href="https://www.cs.cmu.edu/~katef/"><strong>Katerina Fragkiadaki</strong></a>
+                </div>
+                <p></p>
+                [<a href="https://www.arxiv.org/abs/2506.05573">Paper</a>]
+                [<a href="https://wgsxm.github.io/projects/partcrafter/">Project</a>]
+                [<a href="https://github.com/wgsxm/PartCrafter">Code</a>]
+                <img src="https://img.shields.io/github/stars/wgsxm/PartCrafter?style=social"
+															alt="PartCrafter GitHub stars" style="vertical-align: text-bottom;"/>
+                <p>PartCrafter is a structured 3D generative model that jointly generates multiple parts and objects from a single RGB image in a single pass.</p>
+              </td>
+            </tr>
+          </tbody></table>
 
-      <table class="publication-item" data-category="generation" style="background-color: var(--high-light); width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one" align="center">
-              <p class="pub_conf">CVPR 2026</p>
-              <video playsinline autoplay loop muted src="images/id-crafter.mp4" alt="ID-Crafter teaser" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;"></video>
-            </div>
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <a href="https://github.com/paulpanwang/IDCrafter">
-              <span class="morphing-text">ID-Crafter:</span> VLM-Grounded Online RL for Compositional Multi-Subject Video Generation
-            </a>
-            <p></p>
-            <div class="is-size-6 publication-authors">
-              <strong><u>Panwang Pan</u></strong>, Jingjing Zhao, Yuchen Lin, Chenguo Lin, Chenxin Li, Hengyu Liu, Tingting Shen, Yadong Mu
-            </div>
-            <p></p>
-            [<a href="https://arxiv.org/abs/2511.00511">Paper</a>]
-            [<a href="https://paulpanwang.github.io/ID-Crafter">Project</a>]
-            [<a href="https://github.com/paulpanwang/IDCrafter">Code</a>]
-            <p>ID-Crafter introduces a VLM-grounded online RL framework that uses language feedback to improve compositional multi-subject video generation.</p>
-          </td>
-        </tr>
-      </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <div class="one" align="center">
+                  <p class="pub_conf">ICLR 2025</p>
+                  <div class="two" id="DiffGS"><img src="./images/diffgs.gif" width="200" height="100"></div>
+                </div>
+              </td>
+              <td style="padding:10px;width:75%;vertical-align:middle">
+                <a href="https://chenguolin.github.io/projects/DiffSplat/">
+                  <papertitle>Diff<span style="color: #036bfc;">S</span><span style="color: #3503fc;">p</span><span style="color: #a200ff;">la</span><span style="color: #e250ff;">t</span>: Repurposing Image Diffusion Models for Scalable Gaussian Splatting Generation</papertitle>
+                </a>
+                <p></p>
+                <div class="is-size-6 publication-authors">
+                  <a href="https://chenguolin.github.io">Chenguo Lin</a><sup>*</sup>,
+                  <strong>Panwang Pan</strong><sup>*</sup><sup>†</sup>,
+                  <a href="https://ybbbbt.com/">Bangbang Yang</a>,
+                  <a href="https://www.zemingli.com/">Zeming Li</a>,
+                  <a href="http://www.muyadong.com/">Yadong Mu</a>
+                </div>
+                <p></p>
+                [<a href="https://openreview.net/forum?id=eajZpoQkGK">OpenReview</a>]
+                [<a href="https://arxiv.org/abs/2501.16764">Paper</a>]
+                [<a href="https://chenguolin.github.io/projects/DiffSplat/">Project</a>]
+                [<a href="https://github.com/chenguolin/DiffSplat">Code</a>]
+                <img src="https://img.shields.io/github/stars/chenguolin/DiffSplat?style=social"
+															alt="DiffSplat GitHub stars" style="vertical-align: text-bottom;"/>
+                <p>DiffSplat is a 3D generative framework that natively generates 3D Gaussians by repurposing large-scale image diffusion models.</p>
+              </td>
+            </tr>
+          </tbody></table>
 
-      <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:0px 20px 6px 20px;">
-            <p style="font-size:16px;margin-bottom:6px;"><strong>3D Content Generation</strong></p>
-            <p style="margin-bottom:0;">Structured 3D generation spanning meshes, Gaussian splats, humans, and semantic layouts.</p>
-          </td>
-        </tr>
-      </tbody></table>
-
-      <table data-category="generation" class="publication-item" style="background-color: var(--high-light); width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one" align="center">
-              <p class="pub_conf">NeurIPS 2025</p>
-              <img src="images/partcrafter/partcrafter.png" alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;">
-            </div>
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <a href="https://wgsxm.github.io/projects/partcrafter/">
-              <span class="morphing-text">PartCrafter:</span> Structured 3D Mesh Generation via Compositional Latent Diffusion Transformers
-            </a>
-            <p></p>
-            <div class="is-size-6 publication-authors">
-              <a href="https://wgsxm.github.io/">Yuchen Lin</a>,
-              <a href="https://chenguolin.github.io/">Chenguo Lin</a>,
-              <strong>Panwang Pan</strong><sup>†</sup> (Project Lead),
-              <a href="">Honglei Yan</a>,
-              <a href="">Yiqiang Feng</a>,
-              <a href="http://www.muyadong.com/">Yadong Mu</a>,
-              <a href="https://www.cs.cmu.edu/~katef/"><strong>Katerina Fragkiadaki</strong></a>
-            </div>
-            <p></p>
-            [<a href="https://www.arxiv.org/abs/2506.05573">Paper</a>]
-            [<a href="https://wgsxm.github.io/projects/partcrafter/">Project</a>]
-            [<a href="https://github.com/wgsxm/PartCrafter">Code</a>]
-            <img src="https://img.shields.io/github/stars/wgsxm/PartCrafter?style=social"
-														alt="PartCrafter GitHub stars" style="vertical-align: text-bottom;"/>
-            <p>PartCrafter is a structured 3D generative model that jointly generates multiple parts and objects from a single RGB image in a single pass.</p>
-          </td>
-        </tr>
-      </tbody></table>
-
-      <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one" align="center">
-              <p class="pub_conf">ICLR 2025</p>
-              <div class="two" id="DiffGS"><img src="./images/diffgs.gif" width="200" height="100"></div>
-            </div>
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <a href="https://chenguolin.github.io/projects/DiffSplat/">
-              <papertitle>Diff<span style="color: #036bfc;">S</span><span style="color: #3503fc;">p</span><span style="color: #a200ff;">la</span><span style="color: #e250ff;">t</span>: Repurposing Image Diffusion Models for Scalable Gaussian Splatting Generation</papertitle>
-            </a>
-            <p></p>
-            <div class="is-size-6 publication-authors">
-              <a href="https://chenguolin.github.io">Chenguo Lin</a><sup>*</sup>,
-              <strong>Panwang Pan</strong><sup>*</sup><sup>†</sup>,
-              <a href="https://ybbbbt.com/">Bangbang Yang</a>,
-              <a href="https://www.zemingli.com/">Zeming Li</a>,
-              <a href="http://www.muyadong.com/">Yadong Mu</a>
-            </div>
-            <p></p>
-            [<a href="https://openreview.net/forum?id=eajZpoQkGK">OpenReview</a>]
-            [<a href="https://arxiv.org/abs/2501.16764">Paper</a>]
-            [<a href="https://chenguolin.github.io/projects/DiffSplat/">Project</a>]
-            [<a href="https://github.com/chenguolin/DiffSplat">Code</a>]
-            <img src="https://img.shields.io/github/stars/chenguolin/DiffSplat?style=social"
-														alt="DiffSplat GitHub stars" style="vertical-align: text-bottom;"/>
-            <p>DiffSplat is a 3D generative framework that natively generates 3D Gaussians by repurposing large-scale image diffusion models.</p>
-          </td>
-        </tr>
-      </tbody></table>
-
-
-
-      <table class="publication-item" data-category="generation" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one" align="center">
-              <p class="pub_conf">NeurIPS 2024</p>
-              <div class="two" id="huamansplat"><img src="./images/humansplat.gif" width="200" height="200" alt="sym" onerror="this.src='./images/paul.jpg'; this.onerror=null;"></div>
-            </div>
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <a href="https://humansplat.github.io/">
-              <span class="morphing-text">HumanSplat:</span> Generalizable Single-Image Human Gaussian Splatting with Structure Priors
-            </a>
-            <p></p>
-            <div class="is-size-6 publication-authors">
-              <u><strong>Panwang Pan<sup>‡</sup></strong></u>,
-              <a href="https://suzhuo.github.io/">Zhou Su</a>,
-              <a href="https://chenguolin.github.io/">Chenguo Lin</a>,
-              <a href="https://openreview.net/profile?id=~Zhen_Fan2">Zhen Fan</a>,
-              <a href="https://openreview.net/profile?id=~Yongjie_zhang2">Yongjie Zhang</a>,
-              <a href="https://www.zemingli.com/">Zeming Li</a><sup>1</sup>,
-              <a href="/">Tingting Shen</a>,
-              <a href="http://www.muyadong.com/">Yadong Mu</a>,
-              <a href="https://www.liuyebin.com/"><strong>Yebin Liu</strong></a><sup>‡</sup>
-            </div>
-            <p></p>
-            [<a href="https://openreview.net/forum?id=JBAUg7o8Yv">OpenReview</a>]
-            [<a href="https://arxiv.org/abs/2406.12459">Paper</a>]
-            [<a href="https://humansplat.github.io/">Project</a>]
-            [<a href="https://github.com/humansplat/humansplat">Code</a>]
-            <img src="https://img.shields.io/github/stars/humansplat/humansplat?style=social"
-														alt="HumanSplat GitHub stars" style="vertical-align: text-bottom;"/>
-            <p>HumanSplat predicts the 3D Gaussian Splatting properties of any human from a single input image in a generalizable manner.</p>
-          </td>
-        </tr>
-      </tbody></table>
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <div class="one" align="center">
+                  <p class="pub_conf">NeurIPS 2024</p>
+                  <div class="two" id="huamansplat"><img src="./images/humansplat.gif" width="200" height="200" alt="sym" onerror="this.src='./images/paul.jpg'; this.onerror=null;"></div>
+                </div>
+              </td>
+              <td style="padding:10px;width:75%;vertical-align:middle">
+                <a href="https://humansplat.github.io/">
+                  <span class="morphing-text">HumanSplat:</span> Generalizable Single-Image Human Gaussian Splatting with Structure Priors
+                </a>
+                <p></p>
+                <div class="is-size-6 publication-authors">
+                  <u><strong>Panwang Pan<sup>‡</sup></strong></u>,
+                  <a href="https://suzhuo.github.io/">Zhou Su</a>,
+                  <a href="https://chenguolin.github.io/">Chenguo Lin</a>,
+                  <a href="https://openreview.net/profile?id=~Zhen_Fan2">Zhen Fan</a>,
+                  <a href="https://openreview.net/profile?id=~Yongjie_zhang2">Yongjie Zhang</a>,
+                  <a href="https://www.zemingli.com/">Zeming Li</a><sup>1</sup>,
+                  <a href="/">Tingting Shen</a>,
+                  <a href="http://www.muyadong.com/">Yadong Mu</a>,
+                  <a href="https://www.liuyebin.com/"><strong>Yebin Liu</strong></a><sup>‡</sup>
+                </div>
+                <p></p>
+                [<a href="https://openreview.net/forum?id=JBAUg7o8Yv">OpenReview</a>]
+                [<a href="https://arxiv.org/abs/2406.12459">Paper</a>]
+                [<a href="https://humansplat.github.io/">Project</a>]
+                [<a href="https://github.com/humansplat/humansplat">Code</a>]
+                <img src="https://img.shields.io/github/stars/humansplat/humansplat?style=social"
+															alt="HumanSplat GitHub stars" style="vertical-align: text-bottom;"/>
+                <p>HumanSplat predicts the 3D Gaussian Splatting properties of any human from a single input image in a generalizable manner.</p>
+              </td>
+            </tr>
+          </tbody></table>
+        </div>
+      </details>
 
       <h2 data-category="vlm-understanding" class="publication-item">VLM Multimodal Understanding</h2>
       <table class="publication-item" data-category="vlm-understanding" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -431,77 +429,41 @@
         </tr>
       </tbody></table>
 
-      <table class="publication-item" data-category="vlm-understanding" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:0px 20px 6px 20px;">
-            <p style="font-size:16px;margin-bottom:6px;"><strong>Jarvis Series and Agentic Understanding</strong></p>
-            <p style="margin-bottom:0;">Representative VLM systems for multimodal planning, restoration, and creative interaction.</p>
-          </td>
-        </tr>
-      </tbody></table>
+      <details class="publication-item collapsible-section" data-category="vlm-understanding">
+        <summary>
+          <span class="collapsible-title">Jarvis Series and Agentic Understanding</span>
+          <span class="collapsible-description">Representative VLM systems for multimodal planning, restoration, and creative interaction.</span>
+        </summary>
+        <div class="collapsible-body">
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:20px;width:25%;vertical-align:middle">
+                <div class="one" align="center">
+                  <p class="pub_conf">NeurIPS 2025</p>
+                  <img src="images/jarvisArt.png" alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;">
+                </div>
+              </td>
+              <td style="padding:10px;width:75%;vertical-align:middle">
+                <a href="https://jarvisart.vercel.app/">
+                  <span class="morphing-text">JarvisArt:</span> Liberating Human Artistic Creativity via an Intelligent Photo Retouching Agent
+                </a>
+                <p></p>
+                <div class="is-size-6 publication-authors">
+                  Yunlong Lin, Zixu Lin, Kunjie Lin, Jinbin Bai, <strong><u>Panwang Pan</u></strong>, Chenxin Li, Haoyu Chen, Zhongdao Wang, Xinghao Ding‡, Wenbo Li, <strong><a href="https://yanshuicheng.info/">Shuicheng Yan</a></strong><sup>‡</sup>
+                </div>
+                <p></p>
+                [<a href="https://arxiv.org/pdf/2506.17612">Paper</a>]
+                [<a href="https://jarvisart.vercel.app/">Project</a>]
+                [<a href="https://github.com/LYL1015/JarvisArt">Code</a>]
+                <img src="https://img.shields.io/github/stars/LYL1015/JarvisArt?style=social"
+															alt="JarvisArt GitHub stars" style="vertical-align: text-bottom;"/>
+                <p>JarvisArt shows how an agentic VLM can plan and execute photo retouching while preserving content fidelity and faithfully following instructions.</p>
+              </td>
+            </tr>
+          </tbody></table>
+        </div>
+      </details>
 
-      <table class="publication-item" data-category="vlm-understanding" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one" align="center">
-              <p class="pub_conf">NeurIPS 2025</p>
-              <img src="images/jarvisArt.png" alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;">
-            </div>
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <a href="https://jarvisart.vercel.app/">
-              <span class="morphing-text">JarvisArt:</span> Liberating Human Artistic Creativity via an Intelligent Photo Retouching Agent
-            </a>
-            <p></p>
-            <div class="is-size-6 publication-authors">
-              Yunlong Lin, Zixu Lin, Kunjie Lin, Jinbin Bai, <strong><u>Panwang Pan</u></strong>, Chenxin Li, Haoyu Chen, Zhongdao Wang, Xinghao Ding‡, Wenbo Li, <strong><a href="https://yanshuicheng.info/">Shuicheng Yan</a></strong><sup>‡</sup>
-            </div>
-            <p></p>
-            [<a href="https://arxiv.org/pdf/2506.17612">Paper</a>]
-            [<a href="https://jarvisart.vercel.app/">Project</a>]
-            [<a href="https://github.com/LYL1015/JarvisArt">Code</a>]
-            <img src="https://img.shields.io/github/stars/LYL1015/JarvisArt?style=social"
-														alt="JarvisArt GitHub stars" style="vertical-align: text-bottom;"/>
-            <p>JarvisArt shows how an agentic VLM can plan and execute photo retouching while preserving content fidelity and faithfully following instructions.</p>
-          </td>
-        </tr>
-      </tbody></table>
-
-      <table class="publication-item" data-category="vlm-understanding" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:25%;vertical-align:middle">
-            <div class="one" align="center">
-              <p class="pub_conf">CVPR 2025</p>
-              <video playsinline autoplay loop muted src="images/jarvisir/jarvisIR-preview.mp4" alt="sym" width="90%" style="padding-top:0px;padding-bottom:0px;border-radius:15px;"></video>
-            </div>
-          </td>
-          <td style="padding:10px;width:75%;vertical-align:middle">
-            <a href="https://cvpr2025-jarvisir.github.io/">
-              <span class="morphing-text">JarvisIR:</span> Elevating Autonomous Driving Perception with Intelligent Image Restoration
-            </a>
-            <p></p>
-            <div class="is-size-6 publication-authors">
-              <a href="https://lyl1015.github.io/">Yunlong Lin*</a>,
-              <a href="">Zixu Lin*</a>,
-              <a href="https://haoyuchen.com/">Haoyu Chen*</a>,
-              <strong><u>Panwang Pan*</u></strong>,
-              <a href="https://chenxinli001.github.io/">Chenxin Li</a>,
-              <a href="https://ephemeral182.github.io/">Sixiang Chen</a>,
-              <a href="https://kairunwen.github.io/">Kairun Wen</a>,
-              <a href="https://jinyeying.github.io/">Yeying Jin</a>,
-              <a href="https://fenglinglwb.github.io/">Wenbo Li</a>,
-              <a href="https://scholar.google.com/citations?user=k5hVBfMAAAAJ&hl=zh-CN">Xinghao Ding‡</a>
-            </div>
-            <p></p>
-            [<a href="https://arxiv.org/abs/2504.04158">Paper</a>]
-            [<a href="https://cvpr2025-jarvisir.github.io/">Project</a>]
-            [<a href="https://github.com/LYL1015/JarvisIR">Code</a>]
-            <img src="https://img.shields.io/github/stars/LYL1015/JarvisIR?style=social"
-														alt="JarvisIR GitHub stars" style="vertical-align: text-bottom;"/>
-            <p>JarvisIR is a VLM-powered system that dynamically schedules expert restoration models to improve downstream perception.</p>
-          </td>
-        </tr>
-      </tbody></table>
 
 
 

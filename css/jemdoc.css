@@ -105,6 +105,54 @@ transition: opacity 0.3s ease, transform 0.3s ease;
 display: none;
 }
 
+.collapsible-section {
+display: block;
+margin: 0 20px 10px 20px;
+border: 1px solid #d7e3f4;
+background: #fbfcff;
+border-radius: 10px;
+overflow: hidden;
+}
+
+.collapsible-section summary {
+display: block;
+cursor: pointer;
+padding: 14px 18px;
+list-style: none;
+}
+
+.collapsible-section summary::-webkit-details-marker {
+display: none;
+}
+
+.collapsible-section summary::after {
+content: "+ Expand";
+float: right;
+font-size: 13px;
+font-weight: 600;
+color: #6d7b91;
+}
+
+.collapsible-section[open] summary::after {
+content: "- Collapse";
+}
+
+.collapsible-title {
+display: block;
+font-size: 16px;
+font-weight: 700;
+margin-bottom: 6px;
+}
+
+.collapsible-description {
+display: block;
+color: #536277;
+}
+
+.collapsible-body {
+padding-bottom: 6px;
+}
+
 /* Unified highlight styles */
 .role   { color: #0066cc; font-weight: 600; }
 .result { color: #cc0000; }
