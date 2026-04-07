@@ -19,6 +19,54 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.getElementById('cite-btn');
+      if (!btn) return;
+      var bibtex = '@article{pan2025diff4splat,\n' +
+        '  title={Diff4Splat: Controllable 4D Scene Generation with Latent Dynamic Reconstruction Models},\n' +
+        '  author={Pan, Panwang and Lin, Chenguo and Zhao, Jingjing and Li, Chenxin and Lin, Yuchen and Li, Haopeng and Yan, Honglei and Wen, Kairun and Lin, Yunlong and Yuan, Yixuan and others},\n' +
+        '  journal={arXiv preprint arXiv:2511.00503},\n' +
+        '  year={2025}\n' +
+        '}';
+      function copyText(t) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(t).then(function () {
+            notify('Citation copied to clipboard', 'is-success');
+          }).catch(function () {
+            fallbackCopy(t);
+          });
+        } else {
+          fallbackCopy(t);
+        }
+      }
+      function fallbackCopy(t) {
+        var ta = document.createElement('textarea');
+        ta.value = t;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        notify(ok ? 'Citation copied to clipboard' : 'Copy failed, please copy manually', ok ? 'is-success' : 'is-danger');
+      }
+      function notify(msg, type) {
+        var n = document.createElement('div');
+        n.className = 'notification ' + type;
+        n.textContent = msg;
+        n.style.position = 'fixed';
+        n.style.top = '20px';
+        n.style.right = '20px';
+        n.style.zIndex = '9999';
+        document.body.appendChild(n);
+        setTimeout(function () { if (n && n.parentNode) n.parentNode.removeChild(n); }, 2500);
+      }
+      btn.addEventListener('click', function () { copyText(bibtex); });
+    });
+  </script>
 </head>
 
 
@@ -96,6 +144,11 @@
           <span class="author-block"><i>* Equal contribution &nbsp; † Project lead &nbsp; ‡ Corresponding author</i></span>
         </div>
 
+        <!-- Conference -->
+        <div class="is-size-5 publication-authors">
+          <span class="author-block" style="font-weight: bold;">CVPR 2026, Denver</span>
+        </div>
+
 
           <span class="link-block">
             <a href="https://arxiv.org/abs/2511.00503" 
@@ -122,6 +175,14 @@
               class="external-link button is-normal is-rounded is-dark">
               <span class="icon"><i class="fab fa-github"></i></span>
               <span>Code</span>
+            </a>
+          </span> &nbsp;
+
+          <!-- Cite Button -->
+          <span class="link-block">
+            <a id="cite-btn" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="fas fa-quote-right"></i></span>
+              <span>Cite</span>
             </a>
           </span>
           <!-- <span class="link-block">
@@ -349,14 +410,11 @@
         <pre>
       <code>
         
-      @misc{pan2025diff4splatcontrollable4dscene,
-        title={Diff4Splat: Controllable 4D Scene Generation with Latent Dynamic Reconstruction Models}, 
-        author={Panwang Pan and Chenguo Lin and Jingjing Zhao and Chenxin Li and Yuchen Lin and Haopeng Li and Honglei Yan and Kairun Wen and Yunlong Lin and Yixuan Yuan and Yadong Mu},
-        year={2025},
-        eprint={2511.00503},
-        archivePrefix={arXiv},
-        primaryClass={cs.CV},
-        url={https://arxiv.org/abs/2511.00503}, 
+      @article{pan2025diff4splat,
+        title={Diff4Splat: Controllable 4D Scene Generation with Latent Dynamic Reconstruction Models},
+        author={Pan, Panwang and Lin, Chenguo and Zhao, Jingjing and Li, Chenxin and Lin, Yuchen and Li, Haopeng and Yan, Honglei and Wen, Kairun and Lin, Yunlong and Yuan, Yixuan and others},
+        journal={arXiv preprint arXiv:2511.00503},
+        year={2025}
       }
 
 </code></pre>
