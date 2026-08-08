@@ -1,4 +1,15 @@
 .DS_Store
 
+prompts
+
+# Local generated image drafts not referenced by the current homepage
+images/agent-environments-cover.png
+images/agent-hero-cover.png
+images/interview-agent-cover.png
+images/ipiagent-cover.png
+images/jarvisart-cover.png
+images/samagent-cover.png
+images/seedrealtime-cover.png
+
 # Local clone: git@github.com:paulpanwang/paulpanwang.git
 paulpanwang/
